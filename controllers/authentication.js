@@ -210,6 +210,8 @@ exports.logout = (req, res, next) => {
     });
 };
 
+
+
 // accessTokens
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);

@@ -5,6 +5,8 @@ const multer = require("multer");
 require("dotenv").config();
 
 const authentication = require("./routes/authentication");
+const api = require("./routes/api");
+
 const { default: mongoose } = require("mongoose");
 
 const app = express();
@@ -48,6 +50,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/authentication", authentication);
+app.use("/api", api);
+
 
 app.use((error, req, res, next) => {
   console.log(error);
