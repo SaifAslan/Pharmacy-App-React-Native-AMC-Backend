@@ -52,7 +52,6 @@ app.use((req, res, next) => {
 app.use("/authentication", authentication);
 app.use("/api", api);
 
-
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.statusCode || 500;
@@ -65,6 +64,12 @@ mongoose.set("strictQuery", true);
 mongoose
   .connect(mongodb_URI)
   .then((result) => {
-    app.listen(8080);
+    app.listen(process.env.PORT || 8080, function () {
+      console.log(
+        "Express server listening on port %d in %s mode",
+        this.address().port,
+        app.settings.env
+      );
+    });
   })
   .catch((err) => console.log(err));
