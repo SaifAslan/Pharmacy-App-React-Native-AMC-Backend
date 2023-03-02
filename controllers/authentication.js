@@ -179,6 +179,7 @@ exports.postLoginCheckEmail = (req, res, next) => {
       });
     })
     .catch((err) => {
+      res.status(500).json(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
