@@ -115,6 +115,8 @@ exports.postCreateUser = (req, res, next) => {
       });
     })
     .catch((err) => {
+      res.status(500).send(err)
+
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -158,7 +160,7 @@ exports.postLogin = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(500).json(err)
+      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -180,7 +182,7 @@ exports.postLoginCheckEmail = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(500).json(err)
+      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -205,7 +207,7 @@ exports.logout = (req, res, next) => {
       res.status(200).json({ message: "Logged out!" });
     })
     .catch((err) => {
-      res.status(500).json(err)
+      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }

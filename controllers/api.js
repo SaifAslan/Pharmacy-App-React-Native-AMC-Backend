@@ -10,6 +10,7 @@ exports.getPharmacies = (req, res, next) => {
     error.statusCode = 400;
     throw error;
   }
+  
 
   let location = req.query.location;
   fetch(
@@ -32,7 +33,7 @@ exports.getPharmacies = (req, res, next) => {
       res.status(200).json(pharmacies);
     })
     .catch((err) => {
-      res.status(500).json(err)
+      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -80,7 +81,7 @@ exports.getPharmacy = (req, res, next) => {
       res.status(200).json(pharmacy);
     })
     .catch((err) => {
-      res.status(500).json(err)
+      res.status(500).send(err)
 
       if (!err.statusCode) {
         err.statusCode = 500;
