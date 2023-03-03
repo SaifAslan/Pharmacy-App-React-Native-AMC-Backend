@@ -32,6 +32,7 @@ exports.getPharmacies = (req, res, next) => {
       res.status(200).json(pharmacies);
     })
     .catch((err) => {
+      res.status(500).json(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -79,6 +80,8 @@ exports.getPharmacy = (req, res, next) => {
       res.status(200).json(pharmacy);
     })
     .catch((err) => {
+      res.status(500).json(err)
+
       if (!err.statusCode) {
         err.statusCode = 500;
       }

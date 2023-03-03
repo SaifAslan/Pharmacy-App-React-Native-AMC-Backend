@@ -158,6 +158,7 @@ exports.postLogin = (req, res, next) => {
       });
     })
     .catch((err) => {
+      res.status(500).json(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -204,6 +205,7 @@ exports.logout = (req, res, next) => {
       res.status(200).json({ message: "Logged out!" });
     })
     .catch((err) => {
+      res.status(500).json(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
