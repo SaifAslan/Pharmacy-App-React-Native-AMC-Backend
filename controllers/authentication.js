@@ -115,8 +115,6 @@ exports.postCreateUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(500).send(err)
-
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -125,7 +123,7 @@ exports.postCreateUser = (req, res, next) => {
   // console.log(title, content);
 };
 
-exports.postLogin = (req, res, next) => {
+exports.postLogin = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email: email })
@@ -135,7 +133,8 @@ exports.postLogin = (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
-      return { bcrypt: bcrypt.compare(password, user.password), user };
+      let passwordCorrect =  bcrypt.compareSync(password, user.password)
+      return { bcrypt:  passwordCorrect, user };
     })
     .then((result) => {
       if (!result.bcrypt) {
@@ -160,7 +159,6 @@ exports.postLogin = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -182,7 +180,7 @@ exports.postLoginCheckEmail = (req, res, next) => {
       });
     })
     .catch((err) => {
-      res.status(500).send(err)
+
       if (!err.statusCode) {
         err.statusCode = 500;
       }
@@ -207,7 +205,6 @@ exports.logout = (req, res, next) => {
       res.status(200).json({ message: "Logged out!" });
     })
     .catch((err) => {
-      res.status(500).send(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }

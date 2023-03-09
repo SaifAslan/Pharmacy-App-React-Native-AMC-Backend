@@ -53,10 +53,10 @@ app.use("/authentication", authentication);
 app.use("/api", api);
 
 app.use((error, req, res, next) => {
-  console.log(error);
+  console.log(error.statusCode);
   const status = error.statusCode || 500;
   const message = error.message;
-  res.status(status).json({ message: message });
+  res.status(status).json({message: message});
 });
 
 const mongodb_URI = `mongodb+srv://saif:${process.env.MONGODB_PASSWORD}@cluster0.6zbtdaz.mongodb.net/pharmacy-app?retryWrites=true&w=majority`;
