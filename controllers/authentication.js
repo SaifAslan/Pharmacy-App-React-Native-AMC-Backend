@@ -151,7 +151,7 @@ exports.postLogin = async (req, res, next) => {
         message: "User logged in successfully",
         user: {
           name: user.name,
-          surname: user.name,
+          surname: user.surname,
           email: user.email,
           phone: user.phone,
           accessToken: user.accessToken,
