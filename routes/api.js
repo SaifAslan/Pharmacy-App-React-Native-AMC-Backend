@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { body, query } = require("express-validator");
+const { query } = require("express-validator");
 
 const router = express.Router();
 // GET /feed/posts
