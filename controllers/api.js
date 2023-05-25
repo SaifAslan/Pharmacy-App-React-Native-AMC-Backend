@@ -13,7 +13,8 @@ exports.getPharmacies = (req, res, next) => {
 
   let location = req.query.location;
   fetch(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_API_KEY}&keyword=pharmacy&location=${location}&rankby=distance&type=pharmacy`
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=
+    ${process.env.GOOGLE_API_KEY}&keyword=pharmacy&location=${location}&rankby=distance&type=pharmacy`
   )
     .then((response) => {
       return response.json();
